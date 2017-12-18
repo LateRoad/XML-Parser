@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="medicines"
+        xmlns:tns="medicines"
+        elementFormDefault="qualified">
+
+    <element name="medicines"> <!-- корневой элемент-->
+        <complexType>
+            <sequence>
+                <element ref="tns:drug" minOccurs="5" maxOccurs="unbounded"/> <!-- 16 элементов -->
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="drug"> <!-- лекарство -->
+        <sequence>
+            <element name="name">  <!-- название лекарства -->
+                <simpleType>
+                    <restriction base="string">
+                        <minLength value="3"/>
+                        <maxLength value="25"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="pharm"> <!-- фирма-производитель -->
+                <simpleType>
+                    <restriction base="string">
+                        <minLength value="3"/>
+                        <maxLength value="25"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="group"> <!-- группа препаратов к которым относится лекарство -->
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="antibiotic"/>
+                        <enumeration value="painkiller"/>
+                        <enumeration value="vitamins"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="analogs"> <!-- наименование аналога лекарства -->
+                <simpleType>
+                    <restriction base="string">
+                        <minLength value="3"/>
+                        <maxLength value="25"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="characteristics" type="tns:characteristics"/> <!-- составные характеристики -->
+        </sequence>
+        <attribute name="id" use="required" type="tns:drugID"/> <!-- атрибут с id -->
+    </complexType>
+
+
+    <simpleType name="drugID">
+        <restriction base="ID">
+            <pattern value="drug\d{1,9}"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="characteristics">
+        <sequence>
+            <element name="boxing">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="rigid"/>
+                        <enumeration value="semi-rigid"/>
+                        <enumeration value="soft"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="dosage">
+                <simpleType>
+                    <restriction base="string">
+                        <minLength value="3"/>
+                        <maxLength value="25"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+
+    <complexType name="pills">
+        <complexContent>
+            <extension base="tns:drug">
+                <sequence>
+                    <element name="certificate" type="tns:certificate"/>
+                </sequence>
+                <attribute name="type" use="optional">
+                    <simpleType>
+                        <restriction base="string">
+                            <enumeration value="reimbursable"/>
+                            <enumeration value="neutralizing"/>
+                            <enumeration value="regulatory"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="powder">
+        <complexContent>
+            <extension base="tns:drug">
+                <sequence>
+                    <element name="certificate" type="tns:certificate"/>
+                </sequence>
+                <attribute name="type" use="optional">
+                    <simpleType>
+                        <restriction base="string">
+                            <enumeration value="reimbursable"/>
+                            <enumeration value="neutralizing"/>
+                            <enumeration value="regulatory"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="capsules">
+        <complexContent>
+            <extension base="tns:drug">
+                <sequence>
+                    <element name="certificate" type="tns:certificate"/>
+                </sequence>
+                <attribute name="type" use="optional">
+                    <simpleType>
+                        <restriction base="string">
+                            <enumeration value="reimbursable"/>
+                            <enumeration value="neutralizing"/>
+                            <enumeration value="regulatory"/>
+                        </restriction>
+                    </simpleType>
+                </attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <simpleType name="certificate">
+        <restriction base="integer">
+            <pattern value="(\d){6}"/>
+        </restriction>
+    </simpleType>
+
+    <element name="drug" type="tns:drug" abstract="true"/>
+    <element name="pills" type="tns:pills" substitutionGroup="tns:drug"/>
+    <element name="powder" type="tns:powder" substitutionGroup="tns:drug"/>
+    <element name="capsules" type="tns:capsules" substitutionGroup="tns:drug"/>
+
+</schema>

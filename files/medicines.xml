@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<medicines
+        xmlns="medicines"
+>
+
+    <pills id="drug1" type="neutralizing">
+        <name>Adderall</name>
+        <pharm>Mydayis</pharm>
+        <group>antibiotic</group>
+        <analogs>Amphetamine</analogs>
+        <characteristics>
+            <boxing>rigid</boxing>
+            <dosage>An in-depth</dosage>
+        </characteristics>
+        <certificate>100000</certificate>
+    </pills>
+
+    <powder type="regulatory" id="drug2">
+        <name>Midnight Rain</name>
+        <pharm>Fantasy</pharm>
+        <group>painkiller</group>
+        <analogs>2000-12-16</analogs>
+        <characteristics>
+            <boxing>soft</boxing>
+            <dosage>An in
+            </dosage>
+        </characteristics>
+        <certificate>100010</certificate>
+    </powder>
+
+    <pills type="reimbursable" id="drug3">
+        <name>Maeve Ascendant</name>
+        <pharm>Fantasy</pharm>
+        <group>antibiotic</group>
+        <analogs>2000-11-17</analogs>
+        <characteristics>
+            <boxing>rigid</boxing>
+            <dosage>plications</dosage>
+        </characteristics>
+        <certificate>100023</certificate>
+    </pills>
+
+    <capsules id="drug4">
+        <name>Oberon's Legacy</name>
+        <pharm>Fantasy</pharm>
+        <group>vitamins</group>
+        <analogs>2001-03-10</analogs>
+        <characteristics>
+            <boxing>semi-rigid</boxing>
+            <dosage>with XML</dosage>
+        </characteristics>
+        <certificate>120129
+        </certificate>
+    </capsules>
+
+    <pills id="drug5" type="reimbursable">
+        <name>Corets, Eva</name>
+        <pharm>The Sundered Grail</pharm>
+        <group>vitamins</group>
+        <analogs>5.95</analogs>
+        <characteristics>
+            <boxing>semi-rigid</boxing>
+            <dosage>creating applications</dosage>
+        </characteristics>
+        <certificate>111111</certificate>
+    </pills>
+
+    <powder id="drug6" type="regulatory">
+        <name>Randall, Cynthia</name>
+        <pharm>Lover Birds</pharm>
+        <group>painkiller</group>
+        <analogs>4.95</analogs>
+        <characteristics>
+            <boxing>soft</boxing>
+            <dosage>An in-depth look</dosage>
+        </characteristics>
+        <certificate>109321</certificate>
+    </powder>
+
+    <powder id="drug7">
+        <name>Thurman, Paula</name>
+        <pharm>Splish Splash</pharm>
+        <group>antibiotic</group>
+        <analogs>4.95</analogs>
+        <characteristics>
+            <boxing>rigid</boxing>
+            <dosage>AXML.</dosage>
+        </characteristics>
+        <certificate>462135</certificate>
+    </powder>
+
+    <capsules id="drug8" type="neutralizing">
+        <name>Knorr, Stefan</name>
+        <pharm>Creepy Crawlies</pharm>
+        <group>antibiotic</group>
+        <analogs>4.95</analogs>
+        <characteristics>
+            <boxing>rigid</boxing>
+            <dosage>look</dosage>
+        </characteristics>
+        <certificate>049524</certificate>
+    </capsules>
+
+    <pills id="drug9">
+        <name>Kress, Peter</name>
+        <pharm>Paradox Lost</pharm>
+        <group>vitamins</group>
+        <analogs>6.95</analogs>
+        <characteristics>
+            <boxing>semi-rigid</boxing>
+            <dosage>Ands</dosage>
+        </characteristics>
+        <certificate>949592</certificate>
+    </pills>
+
+    <powder type="regulatory" id="drug10">
+        <name>O'Brien, Tim</name>
+        <pharm>Micros</pharm>
+        <group>antibiotic</group>
+        <analogs>36.95</analogs>
+        <characteristics>
+            <boxing>rigid</boxing>
+            <dosage>applications with XML</dosage>
+        </characteristics>
+        <certificate>425693</certificate>
+    </powder>
+
+    <pills id="drug11">
+        <name>O'Brien, Tim</name>
+        <pharm>MSXML3de</pharm>
+        <group>painkiller</group>
+        <analogs>36.95</analogs>
+        <characteristics>
+            <boxing>semi-rigid</boxing>
+            <dosage>An in-dept</dosage>
+        </characteristics>
+        <certificate>999999</certificate>
+    </pills>
+
+    <pills id="drug12">
+        <name>Galos, Mike</name>
+        <pharm>Visual Studio 7</pharm>
+        <group>painkiller</group>
+        <analogs>49.95</analogs>
+        <characteristics>
+            <boxing>soft</boxing>
+            <dosage>Andfk</dosage>
+        </characteristics>
+        <certificate>294102</certificate>
+    </pills>
+
+    <pills id="drug13" type="reimbursable">
+        <name>Computer</name>
+        <pharm>XML Developer's Guide</pharm>
+        <group>vitamins</group>
+        <analogs>2000-10-01</analogs>
+        <characteristics>
+            <boxing>soft</boxing>
+            <dosage>An in-dok with XM</dosage>
+        </characteristics>
+        <certificate>245614</certificate>
+    </pills>
+
+    <capsules id="drug14" type="regulatory">
+        <name>Midnight Rain</name>
+        <pharm>Fantasy</pharm>
+        <group>vitamins</group>
+        <analogs>2000-12-16</analogs>
+        <characteristics>
+            <boxing>soft</boxing>
+            <dosage>AnML.</dosage>
+        </characteristics>
+        <certificate>950256</certificate>
+    </capsules>
+
+    <pills id="drug15">
+        <name>Maeve Ascendant</name>
+        <pharm>Fantasy</pharm>
+        <group>painkiller</group>
+        <analogs>2000-11-17</analogs>
+        <characteristics>
+            <boxing>semi-rigid</boxing>
+            <dosage>An inook at creatin</dosage>
+        </characteristics>
+        <certificate>623566</certificate>
+    </pills>
+
+    <powder type="regulatory" id="drug16">
+        <name>Oberon's Legacy</name>
+        <pharm>Fantasy</pharm>
+        <group>antibiotic</group>
+        <analogs>2001-03-10</analogs>
+        <characteristics>
+            <boxing>rigid</boxing>
+            <dosage>n-depth</dosage>
+        </characteristics>
+        <certificate>205024</certificate>
+    </powder>
+</medicines>
