@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Objects;
 
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "drug", namespace = "medicines", propOrder = {
         "name",

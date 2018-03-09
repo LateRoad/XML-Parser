@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<medicines
-        xmlns="medicines"
->
+<medicines xmlns="medicines">
 
     <pills id="drug1" type="neutralizing">
         <name>Adderall</name>
@@ -22,8 +20,7 @@
         <analogs>2000-12-16</analogs>
         <characteristics>
             <boxing>soft</boxing>
-            <dosage>An in
-            </dosage>
+            <dosage>An in</dosage>
         </characteristics>
         <certificate>100010</certificate>
     </powder>
@@ -49,8 +46,7 @@
             <boxing>semi-rigid</boxing>
             <dosage>with XML</dosage>
         </characteristics>
-        <certificate>120129
-        </certificate>
+        <certificate>120129</certificate>
     </capsules>
 
     <pills id="drug5" type="reimbursable">

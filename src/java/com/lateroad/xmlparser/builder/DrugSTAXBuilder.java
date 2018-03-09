@@ -2,6 +2,10 @@ package com.lateroad.xmlparser.builder;
 
 
 import com.lateroad.xmlparser.entity.*;
+import com.lateroad.xmlparser.exception.XmlParserLogicException;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -9,10 +13,18 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class DrugSTAXBuilder extends AbstractDrugBuilder {
+    static {
+        new DOMConfigurator().doConfigure("log4j2.xml", LogManager.getLoggerRepository());
+    }
+
+    private static final Logger logger = Logger.getLogger(DrugSTAXBuilder.class);
+
+    private static final String ID_TAG = "id";
+    private static final String TYPE_TAG = "type";
+
 
     private XMLInputFactory inputFactory;
 
@@ -22,19 +34,16 @@ public class DrugSTAXBuilder extends AbstractDrugBuilder {
 
 
     @Override
-    public void buildDrugs(String filePath) {
-        FileInputStream inputStream = null;
-        XMLStreamReader reader = null;
+    public void buildDrugs(String filePath) throws XmlParserLogicException {
+        XMLStreamReader reader;
         String name;
-        try {
-            inputStream = new FileInputStream(new File(filePath));
+        try (FileInputStream inputStream = new FileInputStream(new File(filePath))) {
             reader = inputFactory.createXMLStreamReader(inputStream);
             while (reader.hasNext()) {
                 Drug currentDrug = null;
                 int type = reader.next();
                 if (type == XMLStreamConstants.START_ELEMENT) {
                     name = reader.getLocalName();
-                    System.out.println(name);
                     MedicineType tempEnum = MedicineType.valueOf(name.toUpperCase());
                     switch (tempEnum) {
                         case POWDER:
@@ -46,36 +55,27 @@ public class DrugSTAXBuilder extends AbstractDrugBuilder {
                         case CAPSULES:
                             currentDrug = new Capsules();
                             break;
+                        default:
+                            break;
                     }
                     if (currentDrug != null) {
-                        drugSet.add(buildCurrentPaper(reader, currentDrug));
+                        drugSet.add(buildCurrentDrug(reader, currentDrug));
                     }
                 }
             }
-        } catch (XMLStreamException ex) {
-            System.err.println("StAX parsing error! " + ex.getMessage());
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (inputStream != null) {
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        } catch (XMLStreamException | IOException e) {
+            logger.error("StAX parsing error! ", e);
+            throw new XmlParserLogicException();
         }
     }
 
 
-    public Drug buildCurrentPaper(XMLStreamReader reader, Drug drug) throws XMLStreamException {
-        if (reader.getAttributeValue(null, "id") != null) {
-            drug.setId(reader.getAttributeValue(null, "id"));
+    private Drug buildCurrentDrug(XMLStreamReader reader, Drug drug) throws XmlParserLogicException {
+        if (reader.getAttributeValue(null, ID_TAG) != null) {
+            drug.setId(reader.getAttributeValue(null, ID_TAG));
         }
-        if (reader.getAttributeValue(null, "type") != null) {
-            drug.setType(reader.getAttributeValue(null, "type"));
+        if (reader.getAttributeValue(null, TYPE_TAG) != null) {
+            drug.setType(reader.getAttributeValue(null, TYPE_TAG));
         }
 
         String name;
@@ -104,28 +104,30 @@ public class DrugSTAXBuilder extends AbstractDrugBuilder {
                             case CHARACTERISTICS:
                                 drug.setCharacteristics(getXMLChars(reader));
                                 break;
+                            default:
+                                break;
                         }
                         break;
                     case XMLStreamConstants.END_ELEMENT:
                         name = reader.getLocalName().toUpperCase();
-                        System.out.println(name);
                         if (MedicineType.valueOf(name) == MedicineType.POWDER || MedicineType.valueOf(name) == MedicineType.PILLS || MedicineType.valueOf(name) == MedicineType.CAPSULES) {
                             return drug;
                         }
                         break;
+                    default:
+                        break;
                 }
             }
         } catch (XMLStreamException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
-        throw new XMLStreamException("Unknown element in tag Student");
+        throw new XmlParserLogicException();
     }
 
 
     private Characteristics getXMLChars(XMLStreamReader reader) throws XMLStreamException {
         Characteristics chars = new Characteristics();
         int type;
-        String name;
         while (reader.hasNext()) {
             type = reader.next();
             switch (type) {
@@ -137,12 +139,16 @@ public class DrugSTAXBuilder extends AbstractDrugBuilder {
                         case DOSAGE:
                             chars.setDosage(getXMLText(reader));
                             break;
+                        default:
+                            break;
                     }
                     break;
                 case XMLStreamConstants.END_ELEMENT:
                     if (MedicineType.valueOf(reader.getLocalName().toUpperCase()) == MedicineType.CHARACTERISTICS) {
                         return chars;
                     }
+                    break;
+                default:
                     break;
             }
         }
